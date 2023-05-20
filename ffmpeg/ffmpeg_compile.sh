@@ -22,7 +22,7 @@ AVUTIL_VER=$(grep '#define LIBAVUTIL_VERSION_MAJOR' libavutil/version.h | sed 's
 SWSCALE_VER=$(grep '#define LIBSWSCALE_VERSION_MAJOR' libswscale/version_major.h | sed 's/.* //g')
 AVFILTER_VER=$(grep '#define LIBAVFILTER_VERSION_MAJOR' libavfilter/version_major.h | sed 's/.* //g')
 
-REQUIRED_DLLS="avcodec-${AVCODEC_VER}.dll;avutil-${AVUTIL_VER}.dll;libwinpthread-1.dll;swscale-${SWSCALE_VER}.dll;avfliter-${AVFILTER_VER}.dll"
+REQUIRED_DLLS="avcodec-${AVCODEC_VER}.dll;avutil-${AVUTIL_VER}.dll;libwinpthread-1.dll;swscale-${SWSCALE_VER}.dll;avfilter-${AVFILTER_VER}.dll"
 
 if [ -d "build" ]; then
     rm -rf build
@@ -32,7 +32,7 @@ else
 fi
 
 cd build
-../configure --enable-cross-compile --arch=x86_64 --target-os=mingw32 --cross-prefix=x86_64-w64-mingw32- --disable-avdevice --disable-avformat --disable-doc --disable-everything --disable-ffmpeg --disable-ffprobe --disable-network --disable-postproc --disable-swresample --disable-vaapi --disable-vdpau --enable-decoder=h264 --enable-decoder=vp9 --enable-avfilter --enable-shared --prefix=/
+../configure --enable-cross-compile --arch=x86_64 --target-os=mingw32 --cross-prefix=x86_64-w64-mingw32- --disable-avdevice --disable-avformat --disable-doc --disable-everything --disable-ffmpeg --disable-ffprobe --disable-network --disable-postproc --disable-swresample --disable-vaapi --disable-vdpau --enable-decoder=h264 --enable-decoder=vp9 --enable-avfilter --enable-shared --disable-iconv --enable-filter=yadif --prefix=/
 make -j$(nproc)
 
 mkdir ${INSTALL_DIR}
