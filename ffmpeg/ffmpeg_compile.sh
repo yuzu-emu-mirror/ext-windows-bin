@@ -32,7 +32,28 @@ else
 fi
 
 cd build
-../configure --enable-cross-compile --arch=x86_64 --target-os=mingw32 --cross-prefix=x86_64-w64-mingw32- --disable-avdevice --disable-avformat --disable-doc --disable-everything --disable-ffmpeg --disable-ffprobe --disable-network --disable-postproc --disable-swresample --disable-vaapi --disable-vdpau --enable-decoder=h264 --enable-decoder=vp9 --enable-avfilter --enable-shared --disable-iconv --enable-filter=yadif --prefix=/
+../configure \
+    --enable-cross-compile \
+    --arch=x86_64 \
+    --target-os=mingw32 \
+    --cross-prefix=x86_64-w64-mingw32- \
+    --disable-avdevice \
+    --disable-avformat \
+    --disable-doc \
+    --disable-everything \
+    --disable-ffmpeg \
+    --disable-ffprobe \
+    --disable-network \
+    --disable-postproc \
+    --disable-swresample \
+    --disable-vaapi \
+    --disable-vdpau \
+    --enable-decoder={h264,vp8,vp9} \
+    --enable-avfilter \
+    --enable-shared \
+    --disable-iconv \
+    --enable-filter=yadif \
+    --prefix=/
 make -j$(nproc)
 
 mkdir ${INSTALL_DIR}
