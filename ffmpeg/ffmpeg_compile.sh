@@ -53,6 +53,11 @@ cd build
     --enable-shared \
     --disable-iconv \
     --enable-filter=yadif \
+    --enable-d3d11va \
+    --enable-hwaccel={h264_nvdec,vp9_nvdec} \
+    --enable-nvdec \
+    --enable-ffnvcodec \
+    --enable-cuvid \
     --prefix=/
 make -j$(nproc)
 
